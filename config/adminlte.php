@@ -237,22 +237,22 @@ return [
         ],
 
         // Sidebar items:
-        [
+/*         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
-        ],
+        ], */
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
+            'text' => 'Planos',
+            'url'  => 'admin/plans',
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Planos',
+            'url'         => 'admin/plans',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            // 'label'       => 4,
             'label_color' => 'success',
-        ],
+        ],/* 
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -317,7 +317,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ], */
     ],
 
     /*
