@@ -3,7 +3,8 @@
 @section('title', 'Planos')
 
 @section('content_header')
-    <h1>Planos <a href="{{ route('create') }}" class="btn btn-primary" ><i class="fas fa-plus"></i> Adicionar</a></h1>
+    {{-- Botão cadastro com rota para view de cadastro (form) --}}
+    <h1>Planos <a href="{{ route('create') }}" class="btn btn-primary" ><i class="fas fa-plus"></i> Cadastrar</a></h1>
 @stop
 
 @section('content')

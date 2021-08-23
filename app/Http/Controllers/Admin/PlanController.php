@@ -18,7 +18,7 @@ class PlanController extends Controller
 
     public function index()
     {        
-        $plans = Plan::orderBy('id', 'DESC')->Paginate(10);
+        $plans = Plan::orderBy('id', 'DESC')->Paginate(4) ;
         
         return view('admin.pages.plans.index',[
             'plans' => $plans,
@@ -30,13 +30,15 @@ class PlanController extends Controller
         return view('admin.pages.plans.create');
     }
 
+    // esse método 'store' é o responsável pelo cadastro no banco de dados
     // Request é uma função do laravel para receber os dados do form e repassar para variável $request
     public function store(Request $request)
     {
+        // dd($request->all());
         $data = $request->all();
         $data['url'] = str::kebab($request->name);
         $this->repository->create($data);
 
-        return redirect()->route('plans.index');
+        return redirect()->route('index');
     }
 }

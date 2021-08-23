@@ -10,7 +10,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('store') }}" class="form" method="POST"></form>
+            <form action="{{ route('store') }}" class="form" method="POST">
                 {{-- @csrf - Token de segurança para os dados do form  --}}
                 @csrf
 
@@ -29,6 +29,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-dark">Salvar</button>
                 </div>
+            </form>
         </div>
     </div>
 @endsection
