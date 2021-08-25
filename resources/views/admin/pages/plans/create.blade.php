@@ -3,7 +3,7 @@
 @section('title', 'Cadastrar Novo Plano')
 
 @section('content_header')
-    <h1>Cadastrar Novo Plano</h1>
+    <h1>Cadastrar Novo Plano <a href="{{ route('index') }}" class="btn btn-secondary" ><i class="fas fa-arrow-circle-left"></i> Voltar</a></h1>
     
 @stop
 
@@ -27,7 +27,7 @@
                     <input type="text" name="description" class="form-control" placeholder="Descrição:">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-dark">Salvar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </div>
             </form>
         </div>

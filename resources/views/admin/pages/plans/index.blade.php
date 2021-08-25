@@ -3,6 +3,12 @@
 @section('title', 'Planos')
 
 @section('content_header')
+    {{-- message vindo do controller --}}
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     {{-- Botão cadastro com rota para view de cadastro (form) --}}
     <h1>Planos <a href="{{ route('create') }}" class="btn btn-primary" ><i class="fas fa-plus"></i> Cadastrar</a></h1>
 @stop
@@ -10,7 +16,12 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            #Filtros
+            {{-- #Filtros  --}}
+            <form action="{{ route('search') }}" method="POST" class="form form-inline">
+                @csrf
+                <input type="text" name="filter" placeholder="Nome" class="form form-control">&nbsp&nbsp
+                <button class="btn btn-dark"> <i class="fas fa-search"></i> Pesquisar</button>
+            </form>
         </div>
         <div class="card-body">
             <table class="table table-condensed">
@@ -28,10 +39,10 @@
                                     {{$plan->name}}
                                 </td>
                                 <td>
-                                    {{$plan->price}}
+                                    R$ {{ number_format($plan->price, 2, ',', '.') }}
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-warning">Visualizar</a>
+                                    <a href="{{ route('show', $plan->url) }}" class="btn btn-warning"> <i class="far fa-eye"></i> Visualizar</a>
                                 </td>                                                   
                             </tr>
                         @endforeach

@@ -39,6 +39,39 @@ class PlanController extends Controller
         $data['url'] = str::kebab($request->name);
         $this->repository->create($data);
 
+        // redirecionamento via rota (name)
         return redirect()->route('index');
+    }
+
+    public function show($url)
+    {
+         $plan = $this->repository->where('url', $url)->first();
+
+         if(!$plan)
+            return redirect()->back();
+
+        return view('admin.pages.plans.show', [
+            'plan' => $plan
+        ]);
+    }
+
+    public function destroy($url)
+    {
+         $plan = $this->repository->where('url', $url)->first();
+
+         if(!$plan)
+            return redirect()->back();
+
+            $plan->delete();
+
+        // redirecionamento via rota (name)
+        return redirect()
+        ->route('index')
+        ->with('message', 'Plano excluído com sucesso!');
+    }
+
+    public function search(Request $request)
+    {
+        dd($request->all());
     }
 }
