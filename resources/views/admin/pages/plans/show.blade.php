@@ -27,7 +27,7 @@
             <form action="{{ route('destroy', $plan->url) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger"> Excluir - {{$plan->name }}</button>
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>&nbsp Excluir Plano - {{$plan->name }}</button>
             </form>
         </div>
     </div>

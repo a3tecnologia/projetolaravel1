@@ -241,15 +241,15 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ], */
-        [
-            'text' => 'Planos',
-            'url'  => 'admin/plans',
-            'can'  => 'manage-blog',
-        ],
+        // [
+        //     'text' => 'Planos',
+        //     'url'  => 'admin/plans',
+        //     'can'  => 'manage-blog',
+        // ],
         [
             'text'        => 'Planos',
             'url'         => 'admin/plans',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-list-alt',
             // 'label'       => 4,
             'label_color' => 'success',
         ],/* 

@@ -16,6 +16,7 @@ class PlanController extends Controller
         $this->repository = $plan;
     }
 
+    // método index ===================================================
     public function index()
     {        
         $plans = Plan::orderBy('id', 'DESC')->Paginate(4) ;
@@ -25,6 +26,7 @@ class PlanController extends Controller
         ]);
     }
 
+    // método create ===================================================
     public function create()
     {
         return view('admin.pages.plans.create');
@@ -43,6 +45,35 @@ class PlanController extends Controller
         return redirect()->route('index');
     }
 
+    // método edit ===================================================
+    public function edit($url)
+    {
+         $plan = $this->repository->where('url', $url)->first();
+
+         if(!$plan)
+            return redirect()->back();
+
+        // redirecionamento via rota (edit)
+        return view('admin.pages.plans.edit', [
+            'plan' => $plan
+        ])
+        
+        ->with('message', 'Plano excluído com sucesso!');
+    }
+
+    // método update ===================================================
+    // public function update(Request $request, $url)
+    // {
+    //     $plan = $this->repository->where('url', $url)->first();
+
+    //     if(!$plan)
+    //         return redirect()->back();
+        
+    //     dd($request->all());
+
+    // }
+
+    // método show ===================================================
     public function show($url)
     {
          $plan = $this->repository->where('url', $url)->first();
@@ -55,6 +86,7 @@ class PlanController extends Controller
         ]);
     }
 
+    // método destroy ===================================================
     public function destroy($url)
     {
          $plan = $this->repository->where('url', $url)->first();
@@ -70,8 +102,18 @@ class PlanController extends Controller
         ->with('message', 'Plano excluído com sucesso!');
     }
 
+    // método search ===================================================
     public function search(Request $request)
     {
-        dd($request->all());
+        
+        // filter é o nome do campo filter no form da index
+        $filters = $request->except('_token');
+        
+        $plans = $this->repository->search();
+        
+        return view('admin.pages.plans.index',[
+            'plans' => $plans,
+            'filters' => $filters
+        ]);
     }
 }

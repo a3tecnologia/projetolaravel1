@@ -9,4 +9,16 @@ class Plan extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'url', 'price', 'description'];
+
+    // $filter é o nome do campo filter no form da index
+    public function search($filter = null)
+    {
+        $results = $this
+            ->where('name', 'LIKE', "%{$filter}%")
+            ->orwhere('description', 'LIKE', "%{$filter}%")
+            ->paginate(3); 
+            // usando o paginate porque é o utilizado no método index do controller
+
+            return $results;
+    }
 }

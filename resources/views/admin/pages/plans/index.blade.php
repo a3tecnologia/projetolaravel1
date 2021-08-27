@@ -9,8 +9,16 @@
             {{ session('message') }}
         </div>
     @endif
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page"><a href="{{ route('admin.home') }}">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.home') }}">Planos</a></li>
+        </ol>
+    </nav>
+
     {{-- Botão cadastro com rota para view de cadastro (form) --}}
-    <h1>Planos <a href="{{ route('create') }}" class="btn btn-primary" ><i class="fas fa-plus"></i> Cadastrar</a></h1>
+    <h1>Planos <a href="{{ route('create') }}" class="btn btn-primary" ><i class="fas fa-plus-square"></i> Adicionar</a></h1>
 @stop
 
 @section('content')
@@ -19,10 +27,11 @@
             {{-- #Filtros  --}}
             <form action="{{ route('search') }}" method="POST" class="form form-inline">
                 @csrf
-                <input type="text" name="filter" placeholder="Nome" class="form form-control">&nbsp&nbsp
+                <input type="text" name="filter" placeholder="Nome" class="form form-control" value="{{ $filters['filter'] ?? ''}}">&nbsp&nbsp
                 <button class="btn btn-dark"> <i class="fas fa-search"></i> Pesquisar</button>
             </form>
         </div>
+        
         <div class="card-body">
             <table class="table table-condensed">
                 <thead class="thead-dark">
@@ -42,6 +51,7 @@
                                     R$ {{ number_format($plan->price, 2, ',', '.') }}
                                 </td>
                                 <td>
+                                    <a href="{{ route('edit', $plan->url) }}" class="btn btn-info"> <i class="far fa-edit"></i> Editar</a>&nbsp&nbsp
                                     <a href="{{ route('show', $plan->url) }}" class="btn btn-warning"> <i class="far fa-eye"></i> Visualizar</a>
                                 </td>                                                   
                             </tr>
@@ -51,7 +61,11 @@
         </div>
         {{-- Div Link paginação --}}
         <div class="card-footer">
-            {!! $plans->links() !!}
+            @if (isset($filters))
+                 {!! $plans->appends($filters)->links()!!}
+            @else
+                {!! $plans->links() !!}
+            @endif
         </div>
     </div>
 @stop
