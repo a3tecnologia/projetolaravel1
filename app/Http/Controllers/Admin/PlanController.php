@@ -42,7 +42,10 @@ class PlanController extends Controller
         $this->repository->create($data);
 
         // redirecionamento via rota (name)
-        return redirect()->route('index');
+        return redirect()->route('index')
+        ->with('message', 'Plano criado com sucesso!');;
+
+        // dd($data);
     }
 
     // método edit ===================================================
@@ -56,22 +59,25 @@ class PlanController extends Controller
         // redirecionamento via rota (edit)
         return view('admin.pages.plans.edit', [
             'plan' => $plan
-        ])
-        
-        ->with('message', 'Plano excluído com sucesso!');
+        ]);
     }
 
     // método update ===================================================
-    // public function update(Request $request, $url)
-    // {
-    //     $plan = $this->repository->where('url', $url)->first();
+    public function update(Request $request, $url)
+    {
+        // recupero o plano pela url
+        $plan = $this->repository->where('url', $url)->first();
 
-    //     if(!$plan)
-    //         return redirect()->back();
+        if(!$plan)
+            return redirect()->back();
         
-    //     dd($request->all());
+        $plan->update($request->all());
 
-    // }
+        return redirect()
+        ->route('index')
+        ->with('message', 'Plano alterado com sucesso!');
+
+    }
 
     // método show ===================================================
     public function show($url)
