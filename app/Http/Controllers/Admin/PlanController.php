@@ -19,7 +19,7 @@ class PlanController extends Controller
     // método index ===================================================
     public function index()
     {        
-        $plans = Plan::orderBy('id', 'DESC')->Paginate(4) ;
+        $plans = Plan::orderBy('id', 'DESC')->Paginate() ;
         
         return view('admin.pages.plans.index',[
             'plans' => $plans,
@@ -115,7 +115,7 @@ class PlanController extends Controller
         // filter é o nome do campo filter no form da index
         $filters = $request->except('_token');
         
-        $plans = $this->repository->search();
+        $plans = $this->repository->search($request->filter);
         
         return view('admin.pages.plans.index',[
             'plans' => $plans,

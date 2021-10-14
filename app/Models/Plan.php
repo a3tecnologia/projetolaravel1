@@ -16,7 +16,7 @@ class Plan extends Model
         $results = $this
             ->where('name', 'LIKE', "%{$filter}%")
             ->orwhere('description', 'LIKE', "%{$filter}%")
-            ->paginate(3); 
+            ->paginate(10); 
             // usando o paginate porque é o utilizado no método index do controller
 
             return $results;

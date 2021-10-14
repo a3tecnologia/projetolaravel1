@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PlanController;
 
+/*
+Route::tipo_requisição('url_da_rota', [Nome_Controller::class, 'nome_método'])->name('nome_da_rota');*/
 
 Route::put('admin/plans/{url}', [PlanController::class, 'update'])->name('update');
 Route::get('admin/plans/{url}/edit', [PlanController::class, 'edit'])->name('edit');
