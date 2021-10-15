@@ -44,20 +44,20 @@ class PlanController extends Controller
         // redirecionamento via rota (name)
         return redirect()->route('index')
         ->with('message', 'Plano criado com sucesso!');;
-
-        // dd($data);
     }
 
     // método edit ===================================================
     public function edit($url)
     {
-         $plan = $this->repository->where('url', $url)->first();
+        //Pego o plano pela url 
+        $plan = $this->repository->where('url', $url)->first();
 
          if(!$plan)
             return redirect()->back();
 
-        // redirecionamento via rota (edit)
+        // se encontrar um plano, vai pra view edit
         return view('admin.pages.plans.edit', [
+            // aqui passo para dentro da view o plano que irei editar
             'plan' => $plan
         ]);
     }

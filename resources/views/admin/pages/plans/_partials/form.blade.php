@@ -1,6 +1,6 @@
+@include('admin.includes.alerts')
 
 {{-- conteúdo comum do form edit e create --}}
-
 <div class="form-group">
     <label>Nome:</label>
     <input type="text" name="name" class="form-control" placeholder="Nome:" value="{{ $plan->name ?? '' }}">

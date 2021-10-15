@@ -18,14 +18,14 @@
     </nav>
 
     {{-- Botão cadastro com rota para view de cadastro (form) --}}
-    <h1>Planos <a href="{{ route('create') }}" class="btn btn-primary" ><i class="fas fa-plus-square"></i> Adicionar</a></h1>
+    <h1>Planos <a href="{{ route('plans.create') }}" class="btn btn-primary" ><i class="fas fa-plus-square"></i> Adicionar</a></h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header">
             {{-- #Filtros  --}}
-            <form action="{{ route('search') }}" method="POST" class="form form-inline">
+            <form action="{{ route('plans.search') }}" method="POST" class="form form-inline">
                 @csrf
                 <input type="text" name="filter" placeholder="Nome" class="form form-control" value="{{ $filters['filter'] ?? ''}}">&nbsp&nbsp
                 <button class="btn btn-dark"> <i class="fas fa-search"></i> Pesquisar</button>
@@ -51,8 +51,8 @@
                                     R$ {{ number_format($plan->price, 2, ',', '.') }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('edit', $plan->url) }}" class="btn btn-info"> <i class="far fa-edit"></i> Editar</a>&nbsp&nbsp
-                                    <a href="{{ route('show', $plan->url) }}" class="btn btn-warning"> <i class="far fa-eye"></i> Visualizar</a>
+                                    <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-info"> <i class="far fa-edit"></i> Editar</a>&nbsp&nbsp
+                                    <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning"> <i class="far fa-eye"></i> Visualizar</a>
                                 </td>                                                   
                             </tr>
                         @endforeach
