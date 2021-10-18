@@ -23,11 +23,12 @@ class StoreUpdatePlan extends FormRequest
      */
     public function rules()
     {
+        $url = $this->segment(3); //pega a url do plano seguinte a estrutura hierarquica da url sistema.text/admin(1)/plans(2)/nome-plano(30)
+        
         return [
-            'name' => 'required|min:3|max:255',
+            'name' => "required|min:3|max:255'|'unique',:plans,name,{$url},url", //evita update de nome já existente
             'description' => 'nullable|min:3|max:3',
             'price' =>   "required|regex:/^\d+(\.\d{1,2})?$/" 
-            
         ];
     }
 }

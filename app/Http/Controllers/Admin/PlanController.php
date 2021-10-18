@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Str;
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdatePlan;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -34,12 +35,10 @@ class PlanController extends Controller
 
     // esse método 'store' é o responsável pelo cadastro no banco de dados
     // Request é uma função do laravel para receber os dados do form e repassar para variável $request
-    public function store(Request $request)
+    public function store(StoreUpdatePlan $request)
     {
         // dd($request->all());
-        $data = $request->all();
-        $data['url'] = str::kebab($request->name);
-        $this->repository->create($data);
+        $this->repository->create($request->all());
 
         // redirecionamento via rota (name)
         return redirect()->route('index')
@@ -63,7 +62,7 @@ class PlanController extends Controller
     }
 
     // método update ===================================================
-    public function update(Request $request, $url)
+    public function update(StoreUpdatePlan $request, $url)
     {
         // recupero o plano pela url
         $plan = $this->repository->where('url', $url)->first();
