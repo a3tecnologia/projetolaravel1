@@ -33,8 +33,8 @@ class PlanController extends Controller
         return view('admin.pages.plans.create');
     }
 
+    // método create ===================================================    
     // esse método 'store' é o responsável pelo cadastro no banco de dados
-    // Request é uma função do laravel para receber os dados do form e repassar para variável $request
     public function store(StoreUpdatePlan $request)
     {
         // dd($request->all());
